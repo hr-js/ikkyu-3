@@ -1,4 +1,5 @@
 /**
+ * JavaScript ES6テスト
  *	skill check test main.js
  *  問題編
  */
@@ -47,7 +48,6 @@ function fun4(){
 // 2. scope4
 
 // (5)
-console.log('1-5');
 //console.log(var1);
 var var1 = 'hoge';
 // 選択
@@ -80,34 +80,69 @@ function fun6(){
 // 2. fun6
 
 /**
- * 第3問 ajax(非同期通信)
- * この処理はバグがあります。どこが原因なのか指摘してください。
+ * 第3問 バグ探し
+ * バグを指摘してください。
+ * 一つの問題に複数のバグがあるかもしれません。
  */
 
+// (1)
+/**
+ * ・forの初期値設定でiを初期化しているため、ループが動かない。
+ * ・文字列と数字を連結した結果に対して引き算をしているので、エラーになる（下記の場合、掛け算は先に行われるので、問題ない）。
+ */
+
+i = 0;
+
+for(let i ; i < 5; i++){
+    console.log("count: " + i * 10 - 5);
+}
+
+// (2)
+/**
+ * ・変数valueに文字を入れているので、値が連結されるだけで2倍にはならない。
+ * ・分岐条件の値チェックにおいて、イコール演算子が2つだけなので型の照合が行われていない。従って、正しい出力にならない。
+ */
+
+function 引数を二倍にする(number){ return number + number; }
+
+let value = "10";
+
+if(value==10){
+    console.log(引数を二倍にする(value));
+}else{
+    console.log("入力値が不正です。");
+}
+
+// (3)
+// この問題を解くためには、非同期処理の知識が必要です。
+// 非同期通信で本の情報一覧を取得し、テーブルを更新しますがうまく表示できません。
+// 表示できるように、改修方法を答えてください。
+
+// 問題
 $(function(){
-	const $tbody = $('#tbody');
-	let html = '';
-	let data = null;
+ const $tbody = $('#tbody');
+ let html = '';
+ let data = null;
 
-	// 非同期通信
-	$('#ajaxBtn').on('click', function(){
-		$.ajax({
-			method : 'GET',
-			url : 'data.json',
-			dataType : 'json',
-			timeout : 5000,
-		}).done(function(arr_data){
-			data = arr_data;
-		}).fail(function(){
-			alert('ajax error!');
-		});
-	});
+ // 非同期通信
+ $('#ajaxBtn').on('click', function(){
+	 $.ajax({
+		 method : 'GET',
+		 url : 'data.json',
+		 dataType : 'json',
+		 timeout : 5000,
+	 }).done(function(arr_data){
+		 data = arr_data;
+	 }).fail(function(){
+		 alert('ajax error!');
+	 });
+ });
 
-	// テーブルに反映
-	arr_data.forEach(function(value, index, array){
-		html += createTRow(value);
-	});
-	$tbody.append(html);
+ // テーブルに反映
+ data.forEach(function(value, index, array){
+	 html += createTRow(value);
+ });
+ $tbody.append(html);
 });
 
 function createTRow(rowData){
