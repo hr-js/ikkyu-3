@@ -1,0 +1,11 @@
+{
+  "name": "skill_test_01",
+  "version": "1.0.0",
+  "description": "スキルチェックテスト",
+  "author": "hr-js",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1"
+  }
+}
