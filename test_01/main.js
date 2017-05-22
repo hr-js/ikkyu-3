@@ -1,7 +1,7 @@
 /**
  * JavaScript ES6テスト
  *	skill check test main.js
- *  回答編
+ *  解答編
  */
 
 /**
@@ -18,6 +18,7 @@ console.log('1-1')
 // 選択
 // 1. ReferenceError
 // 2. scope1
+
 // 正解：2
 
 // (2)
@@ -29,6 +30,7 @@ console.log('1-2');
 // 選択
 // 1. ReferenceError
 // 2. scope2
+
 // 正解：1
 
 // (3)
@@ -40,6 +42,7 @@ console.log('1-3');
 // 選択
 // 1. ReferenceErrorとなる
 // 2. scope3
+
 // 正解：1
 
 // (4)
@@ -52,6 +55,7 @@ console.log('1-4');
 // 選択
 // 1. ReferenceError
 // 2. scope4
+
 // 正解：1
 
 // (5)
@@ -62,6 +66,7 @@ var var1 = 'hoge';
 // 1. ReferenceError
 // 2. undefined
 // 3. hoge
+
 // 正解：2 ・・・varで変数宣言すると「巻き上げ」が作用される
 
 /**
@@ -78,6 +83,7 @@ let fun5 = function(){
 // 選択
 // 1. ReferenceError
 // 2. fun5
+
 // 正解：1
 
 // (2)
@@ -89,6 +95,7 @@ function fun6(){
 // 選択
 // 1. ReferenceError
 // 2. fun6
+
 // 正解：2
 
 /**
@@ -98,10 +105,6 @@ function fun6(){
  */
 
 // (1)
-/**
- * ・forの初期値設定でiを初期化しているため、ループが動かない。
- * ・文字列と数字を連結した結果に対して引き算をしているので、エラーになる（下記の場合、掛け算は先に行われるので、問題ない）。
- */
 
 i = 0;
 
@@ -109,12 +112,13 @@ for(let i ; i < 5; i++){
     console.log("count: " + i * 10 - 5);
 }
 
-// (2)
 /**
- * ・変数valueに文字を入れているので、値が連結されるだけで2倍にはならない。
- * ・分岐条件の値チェックにおいて、イコール演算子が2つだけなので型の照合が行われていない。従って、正しい出力にならない。
+ * 解答
+ * ・forの初期値設定でiを初期化しているため、ループが動かない。
+ * ・文字列と数字を連結した結果に対して引き算をしているので、エラーになる（下記の場合、掛け算は先に行われるので、問題ない）。
  */
 
+// (2)
 function 引数を二倍にする(number){ return number + number; }
 
 let value = "10";
@@ -125,37 +129,16 @@ if(value==10){
     console.log("入力値が不正です。");
 }
 
+/**
+ * 解答
+ * ・変数valueに文字を入れているので、値が連結されるだけで2倍にはならない。
+ * ・分岐条件の値チェックにおいて、イコール演算子が2つだけなので型の照合が行われていない。従って、正しい出力にならない。
+ */
+
 // (3)
 // この問題を解くためには、非同期処理の知識が必要です。
 // 非同期通信で本の情報一覧を取得し、テーブルを更新しますがうまく表示できません。
 // 表示できるように、改修方法を答えてください。
-/**
- * 解答例
- * データ取得処理が非同期なため、テーブルに反映する処理が、データ取得処理の完了前に行われてしまう可能性がある。
- * doneの中でtbodyの更新処理を行えばよい。
- */
-$(function(){
-	const $tbody = $('#tbody');
-	let html = '';
-
-	// 正解例
-	$('#ajaxBtn').on('click', function(){
-		$.ajax({
-			method : 'GET',
-			url : 'data.json',
-			dataType : 'json',
-			timeout : 5000,
-		}).done(function(arr_data){
-			arr_data.forEach(function(value, index, array){
-				html += createTRow(value);
-			});
-			$tbody.append(html);
-		}).fail(function(){
-			alert('ajax error!');
-		});
-	});
-
-});
 
 // 問題
 // $(function(){
@@ -184,6 +167,35 @@ $(function(){
 // 	$tbody.append(html);
 // });
 
+/**
+ * 解答例
+ * データ取得処理が非同期なため、テーブルに反映する処理が、データ取得処理の完了前に行われてしまう可能性がある。
+ * doneの中でtbodyの更新処理を行えばよい。
+ */
+$(function(){
+	const $tbody = $('#tbody');
+	let html = '';
+
+	// 正解例
+	$('#ajaxBtn').on('click', function(){
+		$.ajax({
+			method : 'GET',
+			url : 'data.json',
+			dataType : 'json',
+			timeout : 5000,
+		}).done(function(arr_data){
+			arr_data.forEach(function(value, index, array){
+				html += createTRow(value);
+			});
+			$tbody.append(html);
+		}).fail(function(){
+			alert('ajax error!');
+		});
+	});
+
+});
+
+// １行分のレコードhtml文字列を作成
 function createTRow(rowData){
 	return `<tr>` +
 						`<td>${rowData.title}</td>` +
@@ -199,7 +211,6 @@ function createTRow(rowData){
  * 第4問 レビュー
  * 改善点など、突っ込みどころをあげてください。
  */
-
 // *この問題を解くためには、jQueryの知識が必要です。
 
 /**
@@ -232,6 +243,7 @@ let result;         // 計算結果
 * ・if文が不適切
 * 　-> == は値のみでデータ型では判断されない。===を使用するほうが望ましい
 */
+
 /**
 * 計算方法を変更する関数
 */
@@ -254,7 +266,6 @@ function clickSelectedCalcMode(obj){
   }
 }
 
-
 /**
 * 解答例
 * ・htmlでonclick属性を使用はやめる
@@ -262,6 +273,7 @@ function clickSelectedCalcMode(obj){
 * ・if文が不適切
 * 　-> == は値のみでデータ型では判断されない。===を使用するほうが望ましい
 */
+
 /**
 * 数値が入力された時の関数
 */
@@ -281,6 +293,7 @@ function keyDown(event){
   }
 
 }
+
 /**
 * 解答例
 * ・htmlでonclick属性を使用はやめる
@@ -290,6 +303,7 @@ function keyDown(event){
 * ・document.getElementById('calcLeft')、document.getElementById('calcRight')を変数に
 * 　-> 上の処理でも呼ばれているので、変数化して呼ぶ回数を減らす
 */
+
 /**
 * 計算ボタンが押されたときの関数
 */
@@ -309,6 +323,7 @@ function executeCalc(){
   // 計算結果を表示
   document.getElementById('calcResult').innerHTML = result;
 }
+
 /**
 * 解答例
 * ・if文が不適切
@@ -318,6 +333,7 @@ function executeCalc(){
 * ・切り上げ処理が不適切(※結構見落とす所)
 * 　-> 1 + 0.1 の結果が1.11となる。0.1を表現する場合の誤差が考慮されていない。
 */
+
 /**
 * 計算ボタンが押されたときの関数
 * 少数は第2位まで表示。端数は切り上げる
@@ -338,6 +354,7 @@ function calc(){
  * 第5問 レビュー
  * jQuery問題
  */
+
 $(function(){
 	$('#change').on('click', function(e){
 		// (1)テキスト文字を赤文字に変更する場合、空欄に入る関数名を答えてください。
@@ -360,7 +377,6 @@ $(function(){
 // $("#jQuery").html("<b>Skill Check</b>");	// 正解
 //$("#jQuery").text("<b>Skill Check</b>");	// 不正解　タグも常時されてしまうので不適切
 
-
 // (3)のログが出力されるタイミングを選択して答えてください
 // 1.
 (function(){
@@ -371,6 +387,7 @@ $(function(){
 // 2. 読み込まれた時に実行
 // 3. 実行しない
 // 4. HTMLドキュメントの読み込みと解析が完了した時に実行
+
 // 正解：2
 
 // 2.
@@ -382,6 +399,7 @@ $(function(){
 // 2. 読み込まれた時に実行
 // 3. 実行しない
 // 4. HTMLドキュメントの読み込みと解析が完了した時に実行
+
 // 正解：4
 
 // 3.
@@ -393,6 +411,7 @@ $(window).on("load", function(e){
 // 2. 読み込まれた時に実行
 // 3. 実行しない
 // 4. HTMLドキュメントの読み込みと解析が完了した時に実行
+
 // 正解：1
 
 // 4.
@@ -404,4 +423,5 @@ $(document).on('DOMContentLoaded', function(){
 // 2. 読み込まれた時に実行
 // 3. 実行しない
 // 4. HTMLドキュメントの読み込みと解析が完了した時に実行
+
 // 正解：4
