@@ -1,7 +1,7 @@
 /**
  * JavaScript ES6テスト
  *	skill check test main.js
- *  問題編
+ *  解答編
  */
 
 /**
@@ -19,6 +19,8 @@ console.log('1-1')
 // 1. ReferenceError
 // 2. scope1
 
+// 正解：2
+
 // (2)
 {
 	let scope2 = "scope2";
@@ -29,6 +31,8 @@ console.log('1-2');
 // 1. ReferenceError
 // 2. scope2
 
+// 正解：1
+
 // (3)
 {
 	const scope3 = "scope3";
@@ -38,6 +42,8 @@ console.log('1-3');
 // 選択
 // 1. ReferenceErrorとなる
 // 2. scope3
+
+// 正解：1
 
 // (4)
 function fun4(){
@@ -50,6 +56,8 @@ console.log('1-4');
 // 1. ReferenceError
 // 2. scope4
 
+// 正解：1
+
 // (5)
 console.log('1-5');
 //console.log(var1);
@@ -58,6 +66,8 @@ var var1 = 'hoge';
 // 1. ReferenceError
 // 2. undefined
 // 3. hoge
+
+// 正解：2 ・・・varで変数宣言すると「巻き上げ」が作用される
 
 /**
  * 第2問 関数定義
@@ -74,6 +84,8 @@ let fun5 = function(){
 // 1. ReferenceError
 // 2. fun5
 
+// 正解：1
+
 // (2)
 console.log('2-2');
 //console.log(fun6());
@@ -83,6 +95,8 @@ function fun6(){
 // 選択
 // 1. ReferenceError
 // 2. fun6
+
+// 正解：2
 
 /**
  * 第3問 バグ探し
@@ -98,6 +112,12 @@ for(let i ; i < 5; i++){
     console.log("count: " + i * 10 - 5);
 }
 
+/**
+ * 解答
+ * ・forの初期値設定でiを初期化しているため、ループが動かない。
+ * ・文字列と数字を連結した結果に対して引き算をしているので、エラーになる（下記の場合、掛け算は先に行われるので、問題ない）。
+ */
+
 // (2)
 function 引数を二倍にする(number){ return number + number; }
 
@@ -109,17 +129,54 @@ if(value==10){
     console.log("入力値が不正です。");
 }
 
+/**
+ * 解答
+ * ・変数valueに文字を入れているので、値が連結されるだけで2倍にはならない。
+ * ・分岐条件の値チェックにおいて、イコール演算子が2つだけなので型の照合が行われていない。従って、正しい出力にならない。
+ */
+
 // (3)
 // この問題を解くためには、非同期処理の知識が必要です。
 // 非同期通信で本の情報一覧を取得し、テーブルを更新しますがうまく表示できません。
 // 表示できるように、改修方法を答えてください。
 
+// 問題
+// $(function(){
+// 	const $tbody = $('#tbody');
+// 	let html = '';
+// 	let data = null;
+//
+// 	// 非同期通信
+// 	$('#ajaxBtn').on('click', function(){
+// 		$.ajax({
+// 			method : 'GET',
+// 			url : 'data.json',
+// 			dataType : 'json',
+// 			timeout : 5000,
+// 		}).done(function(arr_data){
+// 			data = arr_data;
+// 		}).fail(function(){
+// 			alert('ajax error!');
+// 		});
+// 	});
+//
+// 	// テーブルに反映
+// 	data.forEach(function(value, index, array){
+// 		html += createTRow(value);
+// 	});
+// 	$tbody.append(html);
+// });
+
+/**
+ * 解答例
+ * データ取得処理が非同期なため、テーブルに反映する処理が、データ取得処理の完了前に行われてしまう可能性がある。
+ * doneの中でtbodyの更新処理を行えばよい。
+ */
 $(function(){
 	const $tbody = $('#tbody');
 	let html = '';
-	let data = null;
 
-	// 非同期通信
+	// 正解例
 	$('#ajaxBtn').on('click', function(){
 		$.ajax({
 			method : 'GET',
@@ -127,17 +184,15 @@ $(function(){
 			dataType : 'json',
 			timeout : 5000,
 		}).done(function(arr_data){
-			data = arr_data;
+			arr_data.forEach(function(value, index, array){
+				html += createTRow(value);
+			});
+			$tbody.append(html);
 		}).fail(function(){
 			alert('ajax error!');
 		});
 	});
 
-	// テーブルに反映
-	data.forEach(function(value, index, array){
-		html += createTRow(value);
-	});
-	$tbody.append(html);
 });
 
 // １行分のレコードhtml文字列を作成
@@ -157,6 +212,12 @@ function createTRow(rowData){
  * 改善点など、突っ込みどころをあげてください。
  */
 
+/**
+ * 解答例
+ * ・グローバルで定数や変数を宣言している必要性は？ローカル変数にできないか考慮する必要がある
+ * 　-> 即時関数でラップして、名前空間汚染の防止
+ */
+
 // 定数
 const PermissionKeyCodes = [8, 9, 13, // 8 = BackSpace, 9 = Tab, 13 = enter
                             37, 39, 46, // 37 = 左キー, 39 = 右キー, 46 = delete
@@ -171,6 +232,16 @@ let calcResult;     // 計算結果
 let inputLeft;      // 左辺に入力した値
 let inputRight;     // 右辺に入力した値
 let result;         // 計算結果
+
+/**
+* 解答例(定数、変数、htmlの記述)
+* ・引数objが何かわかりにくい
+* 　-> わかりやすい引数名に変更。又は、コメントで補足する
+* ・document.getElementById(id名)の記述回数が多い
+* 　-> 処理前に、変数化して記述回数を減らす。できれば、関数の外で変数宣言(即時関数のローカル変数)できればよい
+* ・if文が不適切
+* 　-> == は値のみでデータ型では判断されない。===を使用するほうが望ましい
+*/
 
 /**
 * 計算方法を変更する関数
@@ -195,6 +266,14 @@ function clickSelectedCalcMode(obj){
 }
 
 /**
+* 解答例
+* ・htmlでonclick属性を使用はやめる
+* 　-> addEventListenerを使用して、jsファイルのみでJavaScriptのコードを管理する
+* ・if文が不適切
+* 　-> == は値のみでデータ型では判断されない。===を使用するほうが望ましい
+*/
+
+/**
 * 数値が入力された時の関数
 */
 function keyDown(event){
@@ -215,6 +294,16 @@ function keyDown(event){
 }
 
 /**
+* 解答例
+* ・htmlでonclick属性を使用はやめる
+* 　-> addEventListenerを使用して、jsファイルのみでJavaScriptのコードを管理する
+* ・0を入力した場合、不正判定される
+* 　-> parseFloat()する前に、入力チェックする
+* ・document.getElementById('calcLeft')、document.getElementById('calcRight')を変数に
+* 　-> 上の処理でも呼ばれているので、変数化して呼ぶ回数を減らす
+*/
+
+/**
 * 計算ボタンが押されたときの関数
 */
 function executeCalc(){
@@ -233,6 +322,16 @@ function executeCalc(){
   // 計算結果を表示
   document.getElementById('calcResult').innerHTML = result;
 }
+
+/**
+* 解答例
+* ・if文が不適切
+* 　-> == は値のみでデータ型では判断されない。===を使用するほうが望ましい
+* ・引数とreturnを使用する
+* 　-> グローバル変数を定義しなくてもいい
+* ・切り上げ処理が不適切(※結構見落とす所)
+* 　-> 1 + 0.1 の結果が1.11となる。0.1を表現する場合の誤差が考慮されていない。
+*/
 
 /**
 * 計算ボタンが押されたときの関数
@@ -268,6 +367,15 @@ $(function(){
 	});
 });
 
+// 解答
+// (1)
+// $("#jQuery").css({
+// 	'color' : 'red'
+// });
+// (2)
+// $("#jQuery").html("<b>Skill Check</b>");	// 正解
+//$("#jQuery").text("<b>Skill Check</b>");	// 不正解　タグもエスケープされて表示されてしまうため不適切
+
 // (3)のログが出力されるタイミングを選択して答えてください
 // 1.
 (function(){
@@ -279,6 +387,8 @@ $(function(){
 // 3. 実行しない
 // 4. HTMLドキュメントの読み込みと解析が完了した時に実行
 
+// 正解：2
+
 // 2.
 $(function(){
 	console.log("5-2 $(function(){});");
@@ -288,6 +398,8 @@ $(function(){
 // 2. 読み込まれた時に実行
 // 3. 実行しない
 // 4. HTMLドキュメントの読み込みと解析が完了した時に実行
+
+// 正解：4
 
 // 3.
 $(window).on("load", function(e){
@@ -299,6 +411,8 @@ $(window).on("load", function(e){
 // 3. 実行しない
 // 4. HTMLドキュメントの読み込みと解析が完了した時に実行
 
+// 正解：1
+
 // 4.
 $(document).on('DOMContentLoaded', function(){
 	console.log('5-4');
@@ -308,3 +422,5 @@ $(document).on('DOMContentLoaded', function(){
 // 2. 読み込まれた時に実行
 // 3. 実行しない
 // 4. HTMLドキュメントの読み込みと解析が完了した時に実行
+
+// 正解：4
