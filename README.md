@@ -9,7 +9,7 @@ jsのスキルチェックです。
 `brew install node`
 
 2. gulpをinstall  
-`npm install gulp-cli -g`  
+`npm install gulp-cli -g`
 `npm install gulp -D`
 
 3. package.jsonからnode_modulesをinstall  
@@ -21,7 +21,6 @@ jsのスキルチェックです。
 
 2. コマンド実行  
   2-1. 問題用のmain.jsを書き出す場合  
-  `gulp`
-
+  `gulp`  
   2-2. 解答用のmain.jsを書き出す場合  
   `gulp answer`
