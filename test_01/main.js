@@ -6,14 +6,14 @@
 
 /**
  * 第1問 スコープ問題
- * console.logの出力結果を、選択してください
- * 答えがわからないようにコメント化しています。
+ * console.logで出力される結果を、選択してください
  */
 
 // (1)
 {
 	var scope1 = "scope1";
 }
+console.log('1-1')
 //console.log(scope1);
 // 選択
 // 1. ReferenceError
@@ -23,6 +23,7 @@
 {
 	let scope2 = "scope2";
 }
+console.log('1-2');
 // console.log(scope2);
 // 選択
 // 1. ReferenceError
@@ -32,6 +33,7 @@
 {
 	const scope3 = "scope3";
 }
+console.log('1-3');
 //console.log(scope3)
 // 選択
 // 1. ReferenceErrorとなる
@@ -42,12 +44,14 @@ function fun4(){
 	var scope4 = "scope4";
 	return scope4;
 }
+console.log('1-4');
 //console.log(scope4);
 // 選択
 // 1. ReferenceError
 // 2. scope4
 
 // (5)
+console.log('1-5');
 //console.log(var1);
 var var1 = 'hoge';
 // 選択
@@ -57,11 +61,11 @@ var var1 = 'hoge';
 
 /**
  * 第2問 関数定義
- * console.logの出力結果を、選択してください
- * 答えがわからないようにコメント化しています。
+ * console.logで出力される結果を、選択してください
  */
 
 // (1)
+console.log('2-1');
 //console.log(fun5());
 let fun5 = function(){
 	return 'fun5';
@@ -71,6 +75,7 @@ let fun5 = function(){
 // 2. fun5
 
 // (2)
+console.log('2-2');
 //console.log(fun6());
 function fun6(){
 	return 'fun6';
@@ -86,6 +91,7 @@ function fun6(){
  */
 
 // (1)
+
 i = 0;
 
 for(let i ; i < 5; i++){
@@ -108,33 +114,33 @@ if(value==10){
 // 非同期通信で本の情報一覧を取得し、テーブルを更新しますがうまく表示できません。
 // 表示できるように、改修方法を答えてください。
 
-// 問題
 $(function(){
- const $tbody = $('#tbody');
- let html = '';
- let data = null;
+	const $tbody = $('#tbody');
+	let html = '';
+	let data = null;
 
- // 非同期通信
- $('#ajaxBtn').on('click', function(){
-	 $.ajax({
-		 method : 'GET',
-		 url : 'data.json',
-		 dataType : 'json',
-		 timeout : 5000,
-	 }).done(function(arr_data){
-		 data = arr_data;
-	 }).fail(function(){
-		 alert('ajax error!');
-	 });
- });
+	// 非同期通信
+	$('#ajaxBtn').on('click', function(){
+		$.ajax({
+			method : 'GET',
+			url : 'data.json',
+			dataType : 'json',
+			timeout : 5000,
+		}).done(function(arr_data){
+			data = arr_data;
+		}).fail(function(){
+			alert('ajax error!');
+		});
+	});
 
- // テーブルに反映
- data.forEach(function(value, index, array){
-	 html += createTRow(value);
- });
- $tbody.append(html);
+	// テーブルに反映
+	data.forEach(function(value, index, array){
+		html += createTRow(value);
+	});
+	$tbody.append(html);
 });
 
+// １行分のレコードhtml文字列を作成
 function createTRow(rowData){
 	return `<tr>` +
 						`<td>${rowData.title}</td>` +
@@ -243,3 +249,62 @@ function calc(){
     result = Math.ceil((inputLeft / inputRight)*100)/100;
   }
 }
+
+/**
+ * 第5問 レビュー
+ * jQuery問題
+ */
+
+$(function(){
+	$('#change').on('click', function(e){
+		// (1)テキスト文字を赤文字に変更する場合、空欄に入る関数名を答えてください。
+		// $("#jQuery").[ここに関数名が入ります]({	※エラーとなるためコメント化
+		// 	'color' : 'red'
+		// });
+
+		// (2)<div id="jQuery">タグを変更する場合。空欄に入る関数名を答えてください。
+		// $("#jQuery").[ここに関数名が入ります]("<b>Skill Check</b>"); ※エラーとなるためコメント化
+
+	});
+});
+
+// (3)のログが出力されるタイミングを選択して答えてください
+// 1.
+(function(){
+	console.log("5-1 (function(){})();");
+})();
+// 選択
+// 1. 画像などリソースが読み込みが終わると実行
+// 2. 読み込まれた時に実行
+// 3. 実行しない
+// 4. HTMLドキュメントの読み込みと解析が完了した時に実行
+
+// 2.
+$(function(){
+	console.log("5-2 $(function(){});");
+});
+// 選択
+// 1. 画像などリソースが読み込みが終わると実行
+// 2. 読み込まれた時に実行
+// 3. 実行しない
+// 4. HTMLドキュメントの読み込みと解析が完了した時に実行
+
+// 3.
+$(window).on("load", function(e){
+	console.log("5-3 window.onload = function(){}");
+});
+// 選択
+// 1. 画像などリソースが読み込みが終わると実行
+// 2. 読み込まれた時に実行
+// 3. 実行しない
+// 4. HTMLドキュメントの読み込みと解析が完了した時に実行
+
+// 4.
+$(document).on('DOMContentLoaded', function(){
+	console.log('5-4');
+});
+// 選択
+// 1. 画像などリソースが読み込みが終わると実行
+// 2. 読み込まれた時に実行
+// 3. 実行しない
+// 4. HTMLドキュメントの読み込みと解析が完了した時に実行
