@@ -67,3 +67,9 @@ div.calcArea > *:not(:last-child){
 	background-color: gainsboro;
   text-align: center;
 }
+
+.btn{
+	position: relative;
+	font-size: 20px;
+    left: 0;
+}
