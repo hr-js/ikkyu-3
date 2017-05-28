@@ -5,7 +5,7 @@
  */
 
 /**
- * 第1問 スコープ問題
+ * 問1 スコープ問題
  * console.logで出力される結果を、選択してください
  */
 
@@ -70,7 +70,7 @@ var var1 = 'hoge';
 // 正解：2 ・・・varで変数宣言すると「巻き上げ」が作用される
 
 /**
- * 第2問 関数定義
+ * 問2 関数定義
  * console.logで出力される結果を、選択してください
  */
 
@@ -99,7 +99,7 @@ function fun6(){
 // 正解：2
 
 /**
- * 第3問 バグ探し
+ * 問3 バグ探し
  * バグを指摘してください。
  * 一つの問題に複数のバグがあるかもしれません。
  */
@@ -208,7 +208,7 @@ function createTRow(rowData){
 }
 
 /**
- * 第4問 レビュー
+ * 問4 レビュー
  * 改善点など、突っ込みどころをあげてください。
  */
 
@@ -350,11 +350,10 @@ function calc(){
 }
 
 /**
- * 第5問 レビュー
- * jQuery問題
+ * 問5 jQuery問題
  */
 
-// (1): 下記の処理を加える場合、適切な場所はどれですか。
+// (1)記の処理を加える場合、適切な場所はどれですか。
 // 加える処理：
 // $("#button").click(function(){
 //      $("#moji").css("color", "red");
@@ -369,16 +368,16 @@ $(function(){
 // (1)の正解
 // 2 ... headのなかでmain.jsを読み込んでいるので、$(function(){})内に処理をかかないとエラーとなる
 
-// (2): コメント解除して、アニメーションでフェードアウトできる処理を答えてください。
+// (2)コメント解除して、アニメーションでフェードアウトできる処理を答えてください。
 $(function(){
   
   // id=btnのボタンがクリックされた時、右にアニメーションする
   $('#btn').on('click', function(e){
     // 右に50%移動するアニメーション
     $(e.target).animate({
-      // display: 'none',   // (1)
-      // fontSize : '0px',  // (2)
-      // opacity : 0,       // (3)
+      // display: 'none',   // 1
+      // fontSize : '0px',  // 2
+      // opacity : 0,       // 3
       left : '50%'
     }, 1000);
 
@@ -387,4 +386,30 @@ $(function(){
 });
 
 // (2)の正解
-// 2 ... headのなかでmain.jsを読み込んでいるので、$(function(){})内に処理をかかないとエラーとなる
+// 3
+
+// (3) jQueryを使用した表示切り替え方法をわかるだけ答えてください。
+$(function(){
+  
+  $('#btn2').on('click', function(e){
+    // ここに表示切り替え処理を書く
+  });
+
+});
+
+// (3)の正解例
+// その１：toggle()を使用する
+// $("#circle").toggle();
+// その２：表示フラグで操作する
+// let is_display = true; // is_displayは、$(...)内に宣言する必要がある
+// if(is_display){
+//   $("#circle").hide();
+//   //$("#circle").css({display : 'none'}); // styleを操作する方法
+//   is_display = false;
+// }else{
+//   $("#circle").show();
+//   //$("#circle").css({display : 'block'}); // styleを操作する方法
+//   is_display = true;
+// }
+// その３：classの有無で操作する
+// $("#circle").toggleClass('hide');

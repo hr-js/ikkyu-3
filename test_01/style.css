@@ -73,3 +73,14 @@ div.calcArea > *:not(:last-child){
 	font-size: 20px;
     left: 0;
 }
+
+.circle{
+    height: 30px;
+    width: 30px;
+    background-color: green;
+    border-radius: 50%;
+}
+
+.hide{
+	display: none;
+}
