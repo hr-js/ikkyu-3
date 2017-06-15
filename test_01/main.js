@@ -6,7 +6,7 @@
 
 /**
  * 問1 スコープ問題
- * console.logで出力される結果を、選択してください
+ * console.logで出力される結果を選択してください
  */
 
 // (1)
@@ -61,7 +61,7 @@ var var1 = 'hoge';
 
 /**
  * 問2 関数定義
- * console.logで出力される結果を、選択してください
+ * console.logで出力される結果を選択してください
  */
 
 // (1)
@@ -110,7 +110,7 @@ if(value==10){
 }
 
 // (3)
-// この問題を解くためには、非同期処理の知識が必要です。
+// *この問題を解くためには、非同期処理の知識が必要です。
 // 非同期通信で本の情報一覧を取得し、テーブルを更新しますがうまく表示できません。
 // 表示できるように、改修方法を答えてください。
 
@@ -134,27 +134,15 @@ $(function(){
 	});
 
 	// テーブルに反映
+	html = '';
 	data.forEach(function(value, index, array){
 		html += createTRow(value);
 	});
 	$tbody.append(html);
 });
 
-// １行分のレコードhtml文字列を作成
-function createTRow(rowData){
-	return `<tr>` +
-						`<td>${rowData.title}</td>` +
-						`<td>${rowData.author}</td>` +
-						`<td>${rowData.price}</td>` +
-						`<td>${rowData.isbn}</td>` +
-						`<td>${rowData.publish}</td>` +
-						`<td>${rowData.published}</td>` +
-					`</tr>`;
-}
-
 /**
- * 問4 レビュー
- * 改善点など、突っ込みどころをあげてください。
+ * 問4 レビュー問題
  */
 
 // 定数
@@ -254,7 +242,7 @@ function calc(){
  * 問5 jQuery問題
  */
 
-// (1)記の処理を加える場合、適切な場所はどれですか。
+// (1)下記の処理をいずれかの番号の行に加えます。
 // 加える処理：
 // $("#button").click(function(){
 //      $("#moji").css("color", "red");
@@ -270,7 +258,7 @@ $(function(){
 $(function(){
   
   // id=btnのボタンがクリックされた時、右にアニメーションする
-  $('#btn').on('click', function(e){
+  $('#q5_btn').on('click', function(e){
     // 右に50%移動するアニメーション
     $(e.target).animate({
       // display: 'none',   // 1
@@ -288,6 +276,16 @@ $(function(){
   
   $('#btn2').on('click', function(e){
     // ここに表示切り替え処理を書く
+  });
+
+});
+
+// (4) 問題文の要件を満たす実装をしてください。
+$(function(){
+
+  $('');
+
+  $('#q5_text_field').on('', function(e){
   });
 
 });
