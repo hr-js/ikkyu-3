@@ -13,9 +13,6 @@ h2{
 table, th, td{
 	border: 1px solid lightgray;
 }
-.question{
-	color: red;
-}
 
 /*計算方法選択エリア*/
 div.selectArea{

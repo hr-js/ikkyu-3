@@ -1,30 +1,3 @@
-// 問題
-// $(function(){
-// 	const $tbody = $('#tbody');
-// 	let html = '';
-// 	let data = null;
-//
-// 	// 非同期通信
-// 	$('#ajaxBtn').on('click', function(){
-// 		$.ajax({
-// 			method : 'GET',
-// 			url : 'data.json',
-// 			dataType : 'json',
-// 			timeout : 5000,
-// 		}).done(function(arr_data){
-// 			data = arr_data;
-// 		}).fail(function(){
-// 			alert('ajax error!');
-// 		});
-// 	});
-//
-// 	// テーブルに反映
-// 	data.forEach(function(value, index, array){
-// 		html += createTRow(value);
-// 	});
-// 	$tbody.append(html);
-// });
-
 /**
  * 解答例
  * データ取得処理が非同期なため、テーブルに反映する処理が、データ取得処理の完了前に行われてしまう可能性がある。
@@ -42,6 +15,8 @@ $(function(){
 			dataType : 'json',
 			timeout : 5000,
 		}).done(function(arr_data){
+			html = '';
+			$tbody.html("");
 			arr_data.forEach(function(value, index, array){
 				html += createTRow(value);
 			});
@@ -52,3 +27,16 @@ $(function(){
 	});
 
 });
+
+
+// １行分のレコードhtml文字列を作成
+function createTRow(rowData){
+	return `<tr>` +
+		`<td>${rowData.title}</td>` +
+		`<td>${rowData.author}</td>` +
+		`<td>${rowData.price}</td>` +
+		`<td>${rowData.isbn}</td>` +
+		`<td>${rowData.publish}</td>` +
+		`<td>${rowData.published}</td>` +
+		`</tr>`;
+}

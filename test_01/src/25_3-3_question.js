@@ -18,6 +18,7 @@ $(function(){
 	});
 
 	// テーブルに反映
+	html = '';
 	data.forEach(function(value, index, array){
 		html += createTRow(value);
 	});

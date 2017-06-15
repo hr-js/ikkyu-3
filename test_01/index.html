@@ -16,21 +16,25 @@
 		<!-- 問1 -->
 		<section>
 			<h2>問1. スコープ編</h2>
-			<p class="question">main.jsの問1を回答してください。</p>
+			<p class="question">main.jsの問1を解答してください。</p>
 		</section>
 
 		<!-- 問2 -->
 		<section>
 			<h2>問2. 関数編</h2>
-			<p class="question">main.jsの問2を回答してください。</p>
+			<p class="question">main.jsの問2を解答してください。</p>
 		</section>
 
 		<!-- 問3 -->
 		<section>
 			<h2>問3. バグ探し編</h2>
 			<p class="question">
-				(1)から(2)については、main.jsの問題を回答してください。<br />
-				*下記のテーブルは(3)で使用します。<br/>
+				(1)<br/>
+				main.js問3(1)を解答してください。<br />
+			</p>
+			<p class="question">
+				(2)<br/>
+				main.js問3(2)を解答してください。<br />
 			</p>
 			<p class="question">
 				(3)<br />
@@ -57,8 +61,9 @@
 		<section>
 			<h2>問4. レビュー編</h2>
 			<p class="question">
-				index.html, main.jsの問4のコードを見て、気になる点や改善点を上げてください。<br />
-				その際、理由も言えればでいいので教えてください。
+				下記は任意の四則演算を行うアプリケーションです。<br/>
+				index.html（このファイル）およびmain.jsの問4のコードを見て、気になる点や改善点を挙げてください。<br />
+				その際、理由も教えてください。
 			</p>
 			<p>計算方法を選択してください</p>
 			<div class="selectArea">
@@ -80,33 +85,45 @@
 				<input id="calcRight" type="text" onkeydown="keyDown(event);"/>
 				<button id="calcExecute" onclick="executeCalc();">計算</button>
 			</div>
-			<p>結果(少数は第2位まで表示。端数は切り上げで表示されます。)</p>
-			<div id="calcResult" class="calcResult"></div>
+			<p>計算結果:<span id="calcResult" class="calcResult"/><br/>
+			<div>(少数は第2位まで表示。端数は切り上げで表示されます。)</div>
+			</p>
 		</section>
 
 		<!-- 問5 -->
 		<section>
 			<h2>問5. jQuery問題</h2>
 			<p class="question">
-				(1)main.jsに問題が表示されていますので、解答していください。
-				下記の文字とボタンは(1)の問題で使用します。
+				(1)<br/>
+				下記の「文字の色を変更」ボタンをクリックして、ボタンの上にある文字の色を変えてください。<br/>
+				main.js問5(1)を見て、適切な番号を解答してください。
 			</p>
 			<div>
-				<div id="moji">hoge</div>
+				<div id="moji">この文字色が変更されます</div>
 				<button id="button">文字の色を変更</button>
 			</div>
 			<p class="question">
-				(2)下記のボタンはクリックすると右に移動します。<br />
-				右に移動するにつれてフェードアウトさせたいです。<br />
-				main.js問5(2)の処理で、どのコメントを解除すると実現できるか解答してください。
+				(2)<br/>
+				下記のボタンをクリックすると、クリックしたボタンが右に移動します。<br />
+				右に移動するにつれてフェードアウトさせたい時、<br />
+				main.js問5(2)のどのコメントを解除すると実現できますか。番号で解答してください。
 			</p>
-			<button id="btn" class="btn">ボタン</button>
+			<button id="q5_btn" class="btn">ボタン</button>
 			<p class="question">
-				(3)ボタンを押した時、下の円の表示切り替えをしたいです。<br />
-				main.js問5(3)の問題を解答してください。
+				(3)<br/>
+				「表示切り替えボタン」を押して、下のマルの表示・非表示を切り替えてください。<br />
+				main.js問5(3)のソースコードを完成させてください。
 			</p>
 			<div id="circle" class="circle"></div>
-			<button id="btn2">切り替えボタン</button>
+			<button id="btn2">表示切り替えボタン</button>
+			<p class="question">
+				(4)<br/>
+				下記のテキストボックスが空欄の場合のみ「必須入力です」と表示してください。<br />
+				main.js問5(4)のソースコードを完成させてください。
+			</p>
+			<div>
+				<input id="q5_text_field" type="text" value="abcde"/><span id="q5_err_msg" style="color:red">必須入力です</span>
+			</div>
 		</section>
 
 		<!-- 参考文献 -->

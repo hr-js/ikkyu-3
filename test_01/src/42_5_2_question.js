@@ -2,7 +2,7 @@
 $(function(){
   
   // id=btnのボタンがクリックされた時、右にアニメーションする
-  $('#btn').on('click', function(e){
+  $('#q5_btn').on('click', function(e){
     // 右に50%移動するアニメーション
     $(e.target).animate({
       // display: 'none',   // 1

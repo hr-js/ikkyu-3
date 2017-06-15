@@ -17,7 +17,6 @@ const gulp		 = require('gulp'),
 						'src/22_3-2_question.js',
 						'src/24_3-3_question_title.js',
 						'src/25_3-3_question.js',
-						'src/27_3-3_code.js',
 						'src/28_4_question_title.js',
 						'src/30_4_code1.js',
 						'src/32_4_code2.js',
@@ -27,7 +26,8 @@ const gulp		 = require('gulp'),
 						'src/39_5_question_title.js',
 						'src/40_5_1_question.js',
 						'src/42_5_2_question.js',
-						'src/44_5_3_question.js'
+						'src/44_5_3_question.js',
+						'src/46_5_4_question.js'
 						],
 			answer 	 = [
 						'src/02_js_header_answer.js',
@@ -54,7 +54,6 @@ const gulp		 = require('gulp'),
 						'src/23_3-2_answer.js',
 						'src/24_3-3_question_title.js',
 						'src/26_3-3_answer.js',
-						'src/27_3-3_code.js',
 						'src/28_4_question_title.js',
 						'src/29_4_answer1.js',
 						'src/30_4_code1.js',
@@ -72,7 +71,9 @@ const gulp		 = require('gulp'),
 						'src/42_5_2_question.js',
 						'src/43_5_2_answer.js',
 						'src/44_5_3_question.js',
-						'src/45_5_3_answer.js'
+						'src/45_5_3_answer.js',
+						'src/46_5_4_question.js',
+						'src/47_5_4_answer.js',
 						];
 
 // 問題用のjsファイルを書き出す時

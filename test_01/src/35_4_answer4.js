@@ -1,6 +1,6 @@
 /**
 * 解答例
-* ・htmlでonclick属性を使用はやめる
+* ・htmlでonclick属性は使用しない方がいい
 * 　-> addEventListenerを使用して、jsファイルのみでJavaScriptのコードを管理する
 * ・0を入力した場合、不正判定される
 * 　-> parseFloat()する前に、入力チェックする
